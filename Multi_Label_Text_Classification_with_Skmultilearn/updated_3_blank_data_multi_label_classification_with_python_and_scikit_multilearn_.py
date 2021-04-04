@@ -50,13 +50,14 @@ from sklearn.model_selection import train_test_split
 # Feature engineering
 from sklearn.feature_extraction.text import TfidfVectorizer
 
+#pip install scikit-multilearn
 # Multi Label Pkgs
 from skmultilearn.problem_transform import BinaryRelevance
 from skmultilearn.problem_transform import ClassifierChain
 from skmultilearn.problem_transform import LabelPowerset
 from skmultilearn.adapt import MLkNN
 
-pip install scikit-multilearn
+
 
 # Load Dataset
 # df = pd.read_csv('https://raw.githubusercontent.com/nagappanm/Python-Machine-Learning/master/Multi_Label_Text_Classification_with_Skmultilearn/data/so_dataset_2_tags.csv')
@@ -89,11 +90,12 @@ df['php'].value_counts().plot(kind='bar')
 + neattext : remove_stopwords
 + pip install neattext
 """
+#pip install neattext
 
 import neattext as nt
 import neattext.functions as nfx
 
-pip install neattext
+
 
 # Explore For Noise
 df['title'].apply(lambda x:nt.TextFrame(x).noise_scan())
@@ -180,8 +182,6 @@ x = [ 'how to write code python']
 xt = tfidf.transform(x)
 multilabel.inverse_transform(binary_rel_clf.predict(xt))
 
-pip install scikit-multilearn
-
 br_prediction
 inverseTransformList = multilabel.inverse_transform(br_prediction)
 inverseTransformList
@@ -253,7 +253,12 @@ clf.fit(X_train,y_train)
 # x = [ 'how to write ml code in python and java i have data but do not know how to do it','java data but do not know how to do it']
 x = [ 'how to write code in python and java']
 xt = tfidf.transform(x)
-multilabel.inverse_transform(clf.predict(xt))
+print(multilabel.inverse_transform(clf.predict(xt)));
+out = multilabel.inverse_transform(clf.predict(xt));
+
+from collections import OrderedDict
+out = list(OrderedDict.fromkeys(out))
+print("non duplicated output is: ",out);
 
 import joblib
 
@@ -270,7 +275,4 @@ tfidf_vectorizer_file.close()
 #### Adapted Algorithm
 from skmultilearn.adapt import MLkNN
 
-### Thanks For Watching 
-### Jesus Saves @JCharisTech
-### Jesse E.Agbe(JCharis)
 
